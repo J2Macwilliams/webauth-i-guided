@@ -7,6 +7,14 @@ exports.up = function(knex) {
       .notNullable()
       .unique();
     users.string('password', 128).notNullable();
+
+    users.integer("role_id")
+    .unsigned()
+    .notNullable()
+    .references("id")
+    .inTable("roles")
+    .onUpdate("Cascade")
+    .onDelete("Restrict");
   });
 };
 
